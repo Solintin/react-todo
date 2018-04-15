@@ -4,29 +4,25 @@ import Todo from './Todo';
 
 /** List of todo items.  */
 
-class TodoList extends React.Component {
-  static propTypes = {
-    handleDelete: PropTypes.func,
-    handleMarkDone: PropTypes.func,
-    todos: PropTypes.arrayOf(PropTypes.object)
-  };
+const TodoList = props => (
+  <div>
+    {props.todos.map(t =>
+      <Todo
+        key={t.id}
+        id={t.id}
+        content={t.content}
+        done={t.done}
+        handleDelete={props.handleDelete}
+        handleMarkDone={props.handleMarkDone}
+      />
+    )}
+  </div>
+);
 
-  render() {
-    return (
-      <div>
-        {this.props.todos.map(t =>
-          <Todo
-            key={t.id}
-            id={t.id}
-            content={t.content}
-            done={t.done}
-            handleDelete={this.props.handleDelete}
-            handleMarkDone={this.props.handleMarkDone}
-          />
-        )}
-      </div>
-    )
-  }
-}
+TodoList.propTypes = {
+  handleDelete: PropTypes.func,
+  handleMarkDone: PropTypes.func,
+  todos: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default TodoList;
