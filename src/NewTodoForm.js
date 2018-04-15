@@ -1,7 +1,12 @@
 import React from 'react';
 import uuid from 'uuid';
+import PropTypes from 'prop-types';
 
 class NewTodoForm extends React.Component {
+  static propTypes = {
+    handleNewTodo: PropTypes.func,
+  };
+
   state = { 'content': "" };
 
   onFormSubmit = (e) => {

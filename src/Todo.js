@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /** Individual todo item.
  * 
@@ -6,6 +7,15 @@ import React from 'react';
  */
 
 class Todo extends React.Component {
+  static propTypes = {
+    handleDelete: PropTypes.func,
+    handleMarkDone: PropTypes.func,
+    handleMarkNotDone: PropTypes.func,
+    content: PropTypes.string,
+    done: PropTypes.bool,
+    id: PropTypes.string,
+  };
+
   handleDelete = () => { this.props.handleDelete(this.props.id) }
   handleMarkDone = () => { this.props.handleMarkDone(this.props.id, true) }
   handleMarkNotDone = () => { this.props.handleMarkDone(this.props.id, false) }
