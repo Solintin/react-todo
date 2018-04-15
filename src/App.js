@@ -13,19 +13,19 @@ class App extends Component {
   }
 
   handleNewTodo = (todo) => {
-    this.setState({ todos: [...this.state.todos, todo] });
+    this.setState((state, props) => ({ todos: [...state.todos, todo] }));
     axios.post("http://localhost:3010/api", todo);
   }
 
   handleDelete = (id) => {
-    this.setState({ todos: this.state.todos.filter(t => t.id !== id) })
+    this.setState((state, props) => ({ todos: state.todos.filter(t => t.id !== id) }))
     axios.delete(`http://localhost:3010/api/${id}`);
   }
 
   handleMarkDone = (id, isDone) => {
-    this.setState({
+    this.setState((state, props) => ({
       todos: this.state.todos.map(t => (t.id === id) ? { ...t, done: isDone } : t)
-    })
+    }))
     axios.post(`http://localhost:3010/api/${id}`, { done: isDone });
   }
 
