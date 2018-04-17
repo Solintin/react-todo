@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
 import PropTypes from 'prop-types';
 
-class NewTodoForm extends Component {
+class EditTodoForm extends Component {
   static propTypes = {
-    handleNewTodo: PropTypes.func,
+    handleEdit: PropTypes.func,
+    id: PropTypes.string,
+    content: PropTypes.string,
   };
 
-  state = { 'content': "" };
+  constructor(props) {
+    super(props);
+    this.state = { content: this.props.content };
+  }
 
   onFormSubmit = (e) => {
     e.preventDefault();
-    this.props.handleNewTodo(
-      { content: this.state.content, id: uuid.v4(), done: false }
+    this.props.handleEdit({ content: this.state.content, id: this.props.id }
     )
-    this.setState({ 'content': "" });
   };
 
   onContentChange = (e) => {
@@ -30,4 +32,4 @@ class NewTodoForm extends Component {
   }
 }
 
-export default NewTodoForm;
+export default EditTodoForm;
